@@ -1,3 +1,16 @@
 #1. code
 df_traffic["Time"]=pd.to_datetime(df_traffic["Time"],format="%I:%M:%S %p")        # 1st change the datatype to datetime format
 df_traffic.groupby("Traffic Situation")["Time"].mean()                            # it will give a average time for heavy, high, low, normal traffic situation
+
+
+#2.code
+    #to calculate the percentage of the each vehicle
+df_traffic["car%"]=(df_traffic["CarCount"]/df_traffic['Total']) * 100
+df_traffic["Bike%"]=(df_traffic["BikeCount"]/df_traffic['Total']) * 100
+df_traffic["Bus%"]=(df_traffic["BusCount"]/df_traffic['Total']) * 100
+df_traffic["Truck%"]=(df_traffic["TruckCount"]/df_traffic['Total']) * 100
+    # grouped by day of the week and calculating the mean of the percentage column
+trend=df_traffic.groupby("Day of the week")[["car%","Bike%","Bus%","Truck%"]].mean()
+    # Visualization
+import matplotlib.pyplot as plt
+trend.plot(kind="bar")
