@@ -14,3 +14,8 @@ trend=df_traffic.groupby("Day of the week")[["car%","Bike%","Bus%","Truck%"]].me
     # Visualization
 import matplotlib.pyplot as plt
 trend.plot(kind="bar")
+
+#3.code
+df_traffic["Hour"]=df_traffic["Time"].dt.hour                   #adding hourly calculation to the dataset
+hourly_traffic = df_traffic.groupby('Hour')['Total'].mean()     #grouping based on hour and averaging the total
+print(hourly_traffic.nlargest(1))                               #geting the peak hour 
