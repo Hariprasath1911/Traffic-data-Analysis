@@ -1,0 +1,3 @@
+#1. code
+df_traffic["Time"]=pd.to_datetime(df_traffic["Time"],format="%I:%M:%S %p")        # 1st change the datatype to datetime format
+df_traffic.groupby("Traffic Situation")["Time"].mean()                            # it will give a average time for heavy, high, low, normal traffic situation
